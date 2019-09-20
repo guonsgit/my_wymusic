@@ -1,0 +1,3 @@
+1.main.js  相当于new vue({})很多配置都需要在main.js中的new vue()之前定义好；
+2.router.js相当于之前的路由字典和路由器，当添加了新的页面组件，或者删除旧的组件，都在这里完成。
+3.App.vue相当于<div id="app">

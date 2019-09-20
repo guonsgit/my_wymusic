@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+     #canvas{
+         border-radius:50%;
+         
+     }
+    </style>
+</head>
+<body>
+    <canvas id='canvas' width='600' height='600'>
+  </canvas>
+  <script>
+   var canvas=document.getElementById("canvas"),
+            context = canvas.getContext("2d");
+
+        var CAN_CENTER={
+                x:canvas.width/2,
+                y:canvas.height/2
+            },//图像中点
+            LINEWIDTH=50,//线段粗细
+            center={x:0,y:0};//用于之后计算圆心位置 
+             //背景
+        context.fillStyle="#cc100f";
+        context.fillRect(0,0,canvas.width,canvas.height);
+        //大圆及终点
+        context.lineWidth=LINEWIDTH;
+        context.fillStyle="#fff";
+        context.strokeStyle="#fff";
+        context.beginPath();
+        context.arc(CAN_CENTER.x,CAN_CENTER.y,175,0,Math.PI*1.35);
+        context.stroke();
+
+        center.x=CAN_CENTER.x-(Math.cos(Math.PI*0.35)*175);
+        center.y=CAN_CENTER.y-(Math.sin(Math.PI*0.35)*175)
+        context.beginPath();
+        context.arc(center.x,center.y,25,0,Math.PI*2);
+        context.fill();
+        //中间偏离圆
+        center.x=CAN_CENTER.x+175-(290-LINEWIDTH)/2;
+        center.y=CAN_CENTER.y;
+        context.beginPath();
+        context.arc(center.x,center.y,(290-LINEWIDTH)/2,0,Math.PI,true);
+        context.stroke();
+        // //中间小圆、直线、尾巴小圆
+        center.x=center.x-50;
+        context.beginPath();
+        context.arc(center.x,center.y,(190-LINEWIDTH)/2,Math.PI,Math.PI*1.88,true);
+        center.x=CAN_CENTER.x+Math.sin(Math.PI/8)*175;
+        center.y=CAN_CENTER.y-Math.cos(Math.PI/8)*175;
+        context.arc(center.x,center.y,50,Math.PI*0.88,Math.PI*1.75);
+        context.stroke();
+        // //尾巴终点
+        context.beginPath();
+        center.x=center.x+(Math.cos(Math.PI*0.25)*50);
+        center.y=center.y-(Math.sin(Math.PI*0.25)*50);
+        context.arc(center.x,center.y,25,0,Math.PI*2);
+        context.fill();   
+  </script>
+</body>
+</html>
